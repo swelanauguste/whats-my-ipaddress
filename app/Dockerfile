@@ -30,10 +30,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-
 # install environment dependencies
 RUN pip3 install --upgrade pip 
 RUN pip3 install -r requirements/prod.txt
 
 EXPOSE 8000
+
 CMD gunicorn cf.wsgi:application --bind 0.0.0.0:$PORT
